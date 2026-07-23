@@ -1,0 +1,1944 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Eclat&Glamour · Perfumería y Cosméticos</title>
+<meta name="theme-color" content="#FFF7F9">
+<meta name="description" content="Perfumes y cosméticos para damas, caballeros y niños en Loreto, Orellana">
+
+<!-- Google Analytics (GA4) — reemplaza G-XXXXXXXXXX por tu propio ID de medición -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Eclat&Glamour">
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,600;0,700;0,900;1,500&family=Jost:wght@300;400;500;600&display=swap');
+
+  /* ======================================================
+     PALETA DE COLORES — EDITA AQUÍ PARA CAMBIAR TODO EL SITIO
+     ====================================================== */
+  :root{
+    --blush:      #FFF7F9;   /* fondo principal, blanco cálido */
+    --blush-card: #FFFFFF;   /* fondo de tarjetas de producto */
+    --rose-soft:  #F4D5E6;   /* rosa suave, para bordes/detalles */
+    --fuchsia:    #C41574;   /* rosa fuerte, botones y acentos principales (tono exacto del logo) */
+    --fuchsia-dk: #900965;   /* rosa fuerte oscuro, hover de botones (tono exacto del logo) */
+    --ink:        #1A1117;   /* negro cálido, para textos y sección noche */
+    --ink-soft:   rgba(26,17,23,0.65); /* texto secundario sobre blanco */
+    --paper-line: rgba(26,17,23,0.08); /* líneas divisoras sutiles */
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background: var(--blush);
+    color: var(--ink);
+    font-family: 'Jost', sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,h2,h3{
+    font-family: 'Bodoni Moda', serif;
+    letter-spacing: -0.01em;
+  }
+
+  a{ color: inherit; }
+
+  /* ---------- HEADER ---------- */
+  header{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255,247,249,0.9);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--paper-line);
+  }
+  .nav{
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand-logo{
+    height: 44px;
+    width: auto;
+    display: block;
+  }
+  .nav-cta{
+    background: var(--ink);
+    color: var(--blush);
+    padding: 10px 20px;
+    border-radius: 100px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: background 0.15s ease;
+  }
+  .nav-cta:hover{ background: var(--fuchsia); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position: relative;
+    padding: 110px 24px 90px;
+    overflow: hidden;
+    text-align: center;
+  }
+  .hero-bg-rotator{
+    position: absolute;
+    inset: -30px;
+  }
+  .bg-slide{
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center 35%;
+    filter: blur(3px) saturate(1.05);
+    transform: scale(1.03);
+    opacity: 0;
+    transition: opacity 1.4s ease;
+    pointer-events: none;
+  }
+  .bg-slide.active{ opacity: 0.92; }
+  .hero-overlay{
+    position: absolute;
+    inset: -30px;
+    background: radial-gradient(ellipse 65% 85% at 50% 38%, rgba(255,247,249,0.86) 0%, rgba(255,247,249,0.45) 55%, rgba(255,247,249,0.08) 100%);
+    pointer-events: none;
+  }
+  .brand-badges{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+  }
+  .brand-badge{
+    background: transparent;
+    border: 1px solid rgba(26,17,23,0.18);
+    color: var(--ink-soft);
+    padding: 7px 18px;
+    border-radius: 100px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .brand-badge:hover{ border-color: var(--fuchsia); color: var(--fuchsia-dk); }
+  .brand-badge.active{
+    background: var(--ink);
+    border-color: var(--ink);
+    color: #fff;
+  }
+  .hero-inner{
+    position: relative;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .hero .eyebrow{
+    display: inline-flex;
+    gap: 10px;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fuchsia-dk);
+    font-weight: 600;
+    margin-bottom: 22px;
+  }
+  .hero .eyebrow em{ font-style: normal; opacity: 0.35; }
+  .hero h1{
+    font-size: clamp(2.6rem, 8vw, 4.6rem);
+    line-height: 0.98;
+    font-weight: 900;
+    margin-bottom: 18px;
+  }
+  .hero h1 i{
+    font-style: italic;
+    font-weight: 500;
+    color: var(--fuchsia);
+  }
+  .hero p{
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    max-width: 460px;
+    margin: 0 auto 36px;
+  }
+  .hero-actions{
+    display:flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-fuchsia{
+    background: var(--fuchsia);
+    color: #fff;
+    padding: 14px 30px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.92rem;
+    letter-spacing: 0.02em;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+  .btn-fuchsia:hover{ background: var(--fuchsia-dk); transform: translateY(-1px); }
+  .btn-outline{
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    padding: 14px 30px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.92rem;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .btn-outline:hover{ background: var(--ink); color: var(--blush); }
+
+  /* ---------- CATALOGO ---------- */
+  .section{
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 70px 24px;
+  }
+  .section-head{
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .section-head span{
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fuchsia-dk);
+    font-weight: 600;
+  }
+  .section-head h2{
+    font-size: clamp(1.9rem, 4vw, 2.5rem);
+    margin-top: 10px;
+    font-weight: 700;
+  }
+
+  /* pestañas de categoría */
+  .tabs{
+    display:flex;
+    justify-content:center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 44px;
+  }
+  .tab{
+    background: transparent;
+    border: 1px solid var(--paper-line);
+    color: var(--ink-soft);
+    padding: 10px 22px;
+    border-radius: 100px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .tab:hover{ border-color: var(--fuchsia); color: var(--fuchsia-dk); }
+  .tab.active{
+    background: var(--ink);
+    border-color: var(--ink);
+    color: #fff;
+  }
+
+  /* buscador de productos */
+  .search-wrap{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 28px;
+  }
+  .search-box{
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+  }
+  .search-icon{
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--ink-soft);
+    pointer-events: none;
+  }
+  .search-box input{
+    width: 100%;
+    background: var(--blush-card);
+    border: 1px solid var(--paper-line);
+    border-radius: 100px;
+    padding: 13px 44px;
+    font-family: 'Jost', sans-serif;
+    font-size: 16px; /* evita zoom automático en iOS */
+    color: var(--ink);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .search-box input::placeholder{ color: var(--ink-soft); }
+  .search-box input:focus{
+    outline: none;
+    border-color: var(--fuchsia);
+    box-shadow: 0 0 0 3px rgba(196,21,116,0.12);
+  }
+  .search-clear{
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 26px;
+    height: 26px;
+    border: none;
+    background: var(--paper-line);
+    color: var(--ink-soft);
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.8rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .search-clear:hover{ background: var(--fuchsia); color: #fff; }
+
+  .sin-resultados{
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    padding: 50px 20px;
+  }
+
+  .grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 28px;
+  }
+  .card{
+    background: var(--blush-card);
+    border: 1px solid var(--paper-line);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .card:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 20px 34px rgba(26,17,23,0.09);
+  }
+  .card-img{
+    aspect-ratio: 1/1;
+    background: radial-gradient(circle at 30% 25%, #ffffff 0%, var(--rose-soft) 45%, var(--fuchsia) 130%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color: rgba(26,17,23,0.4);
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-align:center;
+    padding: 20px;
+    position: relative;
+    cursor: pointer;
+  }
+  .card-img:focus-visible{
+    outline: 3px solid var(--fuchsia);
+    outline-offset: -3px;
+  }
+  .card-img.has-photo{
+    background-size: cover;
+    background-position: center 30%;
+  }
+  .card-img.has-photo .placeholder-label{
+    display: none;
+  }
+  .card-img::after{
+    /* cuello/tapa de frasco, silueta simple */
+    content:'';
+    position:absolute;
+    top: 14px; left:50%;
+    transform: translateX(-50%);
+    width: 26px; height: 14px;
+    border-radius: 4px 4px 0 0;
+    background: rgba(26,17,23,0.18);
+  }
+  .card-body{ padding: 18px 20px 22px; }
+  .card-body span.cat{
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fuchsia-dk);
+    font-weight: 600;
+  }
+  .card-body h3{
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin: 6px 0 6px;
+  }
+  .card-body p{
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+  }
+  .price{
+    display: inline-block;
+    font-family: 'Jost', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--ink);
+    border-top: 1px solid var(--paper-line);
+    padding-top: 12px;
+    width: 100%;
+  }
+  .card.hide{ display: none; }
+
+  /* ---------- CONTACTO — sección "de noche" ---------- */
+  .contact{
+    background: var(--ink);
+    color: var(--blush);
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-bg{
+    position: absolute;
+    inset: 0;
+    background-image: url('fondo-contacto.jpg');
+    background-size: cover;
+    background-position: center 42%;
+    filter: blur(4px) saturate(1.05);
+    opacity: 0.55;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .contact-overlay{
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(26,17,23,0.9) 0%, rgba(26,17,23,0.74) 50%, rgba(26,17,23,0.88) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .contact::before{
+    content:'';
+    position:absolute;
+    bottom: -220px; right: -140px;
+    width: 560px; height: 560px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--fuchsia) 0%, transparent 70%);
+    opacity: 0.35;
+    pointer-events:none;
+    z-index: 1;
+  }
+  .contact .section-head{ position: relative; z-index: 2; }
+  .contact .section-head span{ color: var(--rose-soft); }
+  .contact-grid{
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: start;
+  }
+  @media (max-width: 720px){
+    .contact-grid{ grid-template-columns: 1fr; }
+  }
+  .info-line{ margin-bottom: 20px; font-size: 0.95rem; }
+  .info-line b{ font-weight: 600; display:block; margin-bottom: 2px; color: var(--rose-soft); }
+  .info-line span{ opacity: 0.8; }
+  .mail-link{ color: var(--blush); text-decoration: underline; text-underline-offset: 3px; }
+  .mail-link:hover{ color: var(--rose-soft); }
+
+  form{ display:flex; flex-direction:column; gap: 14px; }
+  input, textarea{
+    background: rgba(255,247,249,0.06);
+    border: 1px solid rgba(255,247,249,0.22);
+    border-radius: 8px;
+    padding: 13px 14px;
+    color: var(--blush);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.9rem;
+  }
+  input::placeholder, textarea::placeholder{ color: rgba(255,247,249,0.45); }
+  textarea{ resize: vertical; min-height: 90px; }
+  form button{
+    background: var(--fuchsia);
+    color: #fff;
+    border: none;
+    padding: 14px;
+    border-radius: 100px;
+    font-weight: 500;
+    font-size: 0.92rem;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  form button:hover{ background: var(--fuchsia-dk); }
+
+  .btn-wa-form{
+    background: transparent !important;
+    border: 1px solid rgba(255,247,249,0.35);
+    color: var(--blush);
+  }
+  .btn-wa-form:hover{ background: rgba(255,247,249,0.08) !important; }
+
+  .form-note{
+    display: block;
+    text-align: center;
+    font-size: 0.82rem;
+    margin-top: 4px;
+    min-height: 1.2em;
+    color: var(--rose-soft);
+  }
+
+  footer{
+    text-align:center;
+    padding: 26px;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    background: var(--blush);
+  }
+  #contadorVisitas{
+    display: block;
+    margin-top: 6px;
+    font-size: 0.75rem;
+    color: var(--ink-soft);
+    opacity: 0.85;
+  }
+
+  .float-wa{
+    position: fixed;
+    bottom: 22px;
+    right: 22px;
+    background: var(--fuchsia);
+    color: #fff;
+    width: 54px; height: 54px;
+    border-radius: 50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    box-shadow: 0 8px 20px rgba(200,30,100,0.4);
+    z-index: 60;
+    font-size: 1.4rem;
+    transition: transform 0.15s ease;
+  }
+  .float-wa:hover{ transform: scale(1.06); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition: none !important; }
+    html{ scroll-behavior: auto; }
+  }
+
+  .toast{
+    position: fixed;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--fuchsia);
+    color: #fff;
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 70;
+  }
+  .toast.show{ opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* ---------- LIGHTBOX: foto y notas olfativas del producto ---------- */
+  .lightbox{
+    position: fixed;
+    inset: 0;
+    background: rgba(26,17,23,0.92);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 100;
+  }
+  .lightbox.show{ display: flex; }
+
+  .lightbox-panel{
+    background: var(--blush-card);
+    border-radius: 18px;
+    width: 100%;
+    max-width: 480px;
+    max-height: 88vh;
+    overflow-y: auto;
+    padding: 26px 24px 30px;
+    position: relative;
+  }
+
+  .lightbox-header{ margin-bottom: 16px; padding-right: 30px; }
+  .lightbox-brand{
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fuchsia-dk);
+    font-weight: 600;
+  }
+  .lightbox-header h3{
+    font-size: 1.3rem;
+    margin-top: 4px;
+    color: var(--ink);
+  }
+
+  .lightbox-tabs{
+    display: flex;
+    gap: 8px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid var(--paper-line);
+  }
+  .lightbox-tab{
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--ink-soft);
+    padding: 10px 4px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-right: 14px;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .lightbox-tab:hover{ color: var(--fuchsia-dk); }
+  .lightbox-tab.active{
+    color: var(--fuchsia);
+    border-bottom-color: var(--fuchsia);
+  }
+
+  .lightbox-pane{ display: none; }
+  .lightbox-pane.active{ display: block; }
+
+  .lightbox-pane img{
+    display: block;
+    width: 100%;
+    max-height: 60vh;
+    object-fit: contain;
+    border-radius: 10px;
+    background: var(--blush);
+  }
+  .lightbox-empty{
+    color: var(--ink-soft);
+    text-align: center;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    padding: 30px 10px;
+  }
+
+  .nota-familia{
+    display: inline-block;
+    background: var(--rose-soft);
+    color: var(--fuchsia-dk);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 100px;
+    margin-bottom: 16px;
+  }
+  .nota-fila{ margin-bottom: 14px; }
+  .nota-fila b{
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--fuchsia-dk);
+    margin-bottom: 3px;
+  }
+  .nota-fila span{
+    font-size: 0.92rem;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .nota-texto{
+    font-size: 0.92rem;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  .nota-fuente{
+    display: block;
+    margin-top: 16px;
+    font-size: 0.75rem;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+
+  .nota-info-toggle{
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 14px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: var(--fuchsia-dk);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .nota-info-toggle:hover{ color: var(--fuchsia); }
+
+  .nota-info-explicacion{
+    margin-top: 12px;
+    padding: 14px 16px;
+    background: var(--blush);
+    border-radius: 10px;
+    border: 1px solid var(--paper-line);
+  }
+  .nota-info-explicacion p{
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .nota-info-explicacion p:last-child{ margin-bottom: 0; }
+
+  .lightbox-close{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.14);
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background 0.15s ease;
+    z-index: 101;
+  }
+  .lightbox-close:hover{ background: var(--fuchsia); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <img src="logo-header.png" alt="Eclat&Glamour" class="brand-logo">
+    <a class="nav-cta" href="#contacto">Escríbenos</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-bg-rotator" id="bgRotator">
+    <div class="bg-slide active" style="background-image:url('fondo-lbel.jpg'); background-position: 60% center;"></div>
+    <div class="bg-slide" style="background-image:url('fondo-esika.jpg');"></div>
+    <div class="bg-slide" style="background-image:url('fondo-cyzone.jpg'); background-position: 78% 35%;"></div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <span class="eyebrow">Damas <em>·</em> Caballeros <em>·</em> Niños</span>
+    <h1>Perfumería <i>&</i> Cosmética</h1>
+    <p>Fragancias y cuidado personal para toda la familia. Encuentra tu esencia en Eclat&Glamour.</p>
+    <div class="hero-actions">
+      <a class="btn-fuchsia" href="#catalogo">Ver catálogo</a>
+      <a class="btn-outline" href="#contacto">Contactar</a>
+    </div>
+    <div class="brand-badges" id="brandBadges">
+      <button class="brand-badge active" data-slide="0">L'bel</button>
+      <button class="brand-badge" data-slide="1">Ésika</button>
+      <button class="brand-badge" data-slide="2">Cyzone</button>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="catalogo">
+  <div class="section-head">
+    <span>Catálogo</span>
+    <h2>Nuestros productos</h2>
+  </div>
+
+  <div class="search-wrap">
+    <div class="search-box">
+      <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input type="text" id="buscador" placeholder="Busca por nombre, marca o aroma…" aria-label="Buscar productos" autocomplete="off">
+      <button type="button" id="limpiarBusqueda" class="search-clear" aria-label="Limpiar búsqueda" hidden>✕</button>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" data-filter="todos">Todos</button>
+    <button class="tab" data-filter="damas">Damas</button>
+    <button class="tab" data-filter="caballeros">Caballeros</button>
+    <button class="tab" data-filter="ninos">Niños</button>
+  </div>
+
+  <div class="grid" id="grid"></div>
+  <p class="sin-resultados" id="sinResultados" hidden>No se encontraron productos que coincidan con tu búsqueda. Prueba con otro nombre, marca o tipo de aroma.</p>
+</section>
+
+<section class="section contact" id="contacto">
+  <div class="contact-bg"></div>
+  <div class="contact-overlay"></div>
+  <div class="section-head">
+    <span>Contacto</span>
+    <h2>Escríbenos</h2>
+  </div>
+  <div class="contact-grid">
+    <div>
+      <div class="info-line">
+        <b>WhatsApp</b>
+        <span>+593 98 831 8915</span>
+      </div>
+      <div class="info-line">
+        <b>Correo</b>
+        <span><a href="mailto:jimenezjaneth525@gmail.com" class="mail-link">jimenezjaneth525@gmail.com</a></span>
+      </div>
+      <div class="info-line">
+        <b>Ubicación</b>
+        <span>Loreto, Orellana, Ecuador</span>
+      </div>
+      <div class="info-line">
+        <b>Horario</b>
+        <span>Lunes a sábado, 9:00 – 18:00</span>
+      </div>
+    </div>
+    <form id="contactForm" name="contacto" method="POST" data-netlify="true">
+      <input type="hidden" name="form-name" value="contacto">
+      <input type="text" name="nombre" placeholder="Tu nombre" required>
+      <input type="tel" name="telefono" placeholder="Tu teléfono" required>
+      <textarea name="mensaje" placeholder="¿Qué producto te interesa?" required></textarea>
+      <button type="submit">Enviar mensaje</button>
+      <button type="button" id="btnWhatsappForm" class="btn-wa-form">Escribir por WhatsApp</button>
+      <span class="form-note" id="formNote"></span>
+    </form>
+  </div>
+</section>
+
+<footer>© 2026 Eclat&Glamour Perfumería y Cosméticos — Loreto, Orellana
+  <span id="contadorVisitas"></span>
+</footer>
+
+<a class="float-wa" href="https://wa.me/593988318915" target="_blank" aria-label="Escribir por WhatsApp">💬</a>
+<div class="toast" id="toast">Mensaje enviado (demo)</div>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">✕</button>
+  <div class="lightbox-panel">
+    <div class="lightbox-header">
+      <span class="lightbox-brand" id="lightboxBrand"></span>
+      <h3 id="lightboxNombre"></h3>
+    </div>
+    <div class="lightbox-tabs">
+      <button class="lightbox-tab active" data-tab="foto">Foto</button>
+      <button class="lightbox-tab" data-tab="notas" id="lightboxTabNotas">Notas Olfativas</button>
+    </div>
+    <div class="lightbox-pane active" data-pane="foto">
+      <img id="lightboxImg" src="" alt="Foto del producto" style="display:none;">
+      <div class="lightbox-empty" id="lightboxEmpty" style="display:none;"></div>
+    </div>
+    <div class="lightbox-pane" data-pane="notas">
+      <div id="lightboxNotas"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ==========================================================
+  // CATÁLOGO DE PRODUCTOS
+  // Para agregar un producto nuevo, copia un bloque { ... } y
+  // cambia sus datos. "notas" puede ser:
+  //   tipo:'detallada' -> tiene salida / corazon / fondo
+  //   tipo:'general'   -> solo hay una descripción general publicada
+  //   tipo:'pendiente' -> todavía no se han investigado/agregado
+  // ==========================================================
+  const PRODUCTOS = [
+    { id:'vibranza-provocative', marca:"Ésika", categoria:'damas', nombre:"Vibranza Provocative",
+      descripcion:"Aroma floral dulce y envolvente.", precio:"$20,00",
+      foto:"fotos/vibranza-provocative-esika.jpg",
+      notas:{ tipo:'general', familia:'Floral dulce',
+        texto:"Ésika presenta esta edición como un aroma dulce, floral y envolvente. Aún no ha publicado el desglose oficial de notas de salida, corazón y fondo para esta versión Provocative." } },
+
+    { id:'dream', marca:"Ésika", categoria:'damas', nombre:"Dream",
+      descripcion:"Eau de Parfum floral frutal.", precio:"$20,00",
+      foto:"fotos/dream-esika.jpg",
+      notas:{ tipo:'detallada', familia:'Floral frutal',
+        salida:"Pera de Provence, bergamota italiana",
+        corazon:"Flor de magnolia, rosa, jazmín",
+        fondo:"Madera de cedro, musgo, ámbar, pachulí, almizcle" } },
+
+    { id:'oud-elixir', marca:"Ésika", categoria:'caballeros', nombre:"Oud Elixir",
+      descripcion:"Fragancia oriental intensa y sofisticada.", precio:"$23,00",
+      foto:"fotos/oud-elixir-esika.jpg",
+      notas:{ tipo:'general', familia:'Oriental',
+        texto:"Ésika describe este lanzamiento como un aroma intenso y sofisticado, con notas principales de madera de oud, artemisa y azafrán." } },
+
+    { id:'vibranza', marca:"Ésika", categoria:'damas', nombre:"Vibranza",
+      descripcion:"El best-seller de Ésika, oriental dulce.", precio:"$20,00",
+      foto:"fotos/vibranza-esika.jpg",
+      notas:{ tipo:'detallada', familia:'Oriental dulce',
+        salida:"Toronja, ruibarbo, arándano, café",
+        corazon:"Orquídea, freesia, flor de café, heliotropo",
+        fondo:"Sándalo australiano, tonka tostado, vainilla de Madagascar" } },
+
+    { id:'eternally', marca:"Ésika", categoria:'damas', nombre:"Eternally For Her",
+      descripcion:"Aroma oriental dulce frutal.", precio:"$18,00",
+      foto:"fotos/eternally-esika.jpg",
+      notas:{ tipo:'detallada', familia:'Oriental dulce frutal',
+        salida:"Frambuesa, bergamota, pera",
+        corazon:"Mimosa, rosa, flor de azahar",
+        fondo:"Cumarina, cashmeran, galaxolide" } },
+
+    { id:'kromo-black', marca:"Ésika", categoria:'caballeros', nombre:"Kromo Black",
+      descripcion:"Perfume masculino oriental especiado.", precio:"$22,50",
+      foto:"fotos/kromo-black-esika.jpg",
+      notas:{ tipo:'detallada', familia:'Oriental especiado',
+        salida:"Pomelo, cardamomo de Guatemala, pimienta negra",
+        corazon:"Elemí, geranio, hoja de violeta",
+        fondo:"Oakmoss, tonka, pachulí, sándalo, madera de guaiac" } },
+
+    { id:'pulso-christian-meier', marca:"Ésika", categoria:'caballeros', nombre:"Pulso · Christian Meier",
+      descripcion:"Perfume masculino oriental amaderado.", precio:"$21,00",
+      foto:"fotos/pulso-christian-meier-esika.jpg",
+      notas:{ tipo:'detallada', familia:'Oriental amaderado',
+        salida:"Sambuca, grosella roja, cardamomo, limón, raíz de angélica",
+        corazon:"Nuez moscada, acorde de frutos secos, anís estrellado, freesia, heliotropo",
+        fondo:"Bálsamo de Perú, hojas de tabaco, cedro rojo, cachemira, ámbar" } },
+
+    { id:'kalos-sport', marca:"Ésika", categoria:'caballeros', nombre:"Kalos Sport",
+      descripcion:"Perfume masculino herbal aromático.", precio:"$22,50",
+      foto:"fotos/kalos-sport-esika.jpg",
+      notas:{ tipo:'detallada', familia:'Aromático / Herbal',
+        salida:"Cassis, piña, ciruela, bergamota, limón, mandarina, lavanda, clavel, salvia esclarea",
+        corazon:"Lirio del valle, clavel, jazmín, geranio, rosa",
+        fondo:"Musgo, cedro, vetiver, musk, tonka" } },
+
+    { id:'nitro', marca:"Cyzone", categoria:'caballeros', nombre:"Nitro",
+      descripcion:"Perfume masculino herbal aromático.", precio:"$19,50",
+      foto:"fotos/nitro-cyzone.jpg",
+      notas:{ tipo:'general', familia:'Herbal aromático',
+        texto:"Cyzone lo describe con un aroma herbal aromático que combina pachulí, notas cítricas, cedro y hojas verdes." } },
+
+    { id:'illusion', marca:"Cyzone", categoria:'damas', nombre:"Illusion",
+      descripcion:"Perfume floral frutal.", precio:"$17,00",
+      foto:"fotos/illusion-cyzone.jpg",
+      notas:{ tipo:'general', familia:'Floral frutal',
+        texto:"Cyzone describe este lanzamiento con dulces toques de pera, frescas notas de bergamota y delicados lirios del valle." } },
+
+    { id:'fist-victory', marca:"Cyzone", categoria:'caballeros', nombre:"Fist Victory",
+      descripcion:"Perfume masculino, proceso Essenttech.", precio:"$18,50",
+      foto:"fotos/fist-victory-cyzone.jpg",
+      notas:{ tipo:'general', familia:'Amaderado',
+        texto:"Según su empaque, destaca notas de sándalo y naranja, elaborado con el proceso Essenttech que maximiza calidad y duración." } },
+
+    { id:'sweet-black-pink-addict', marca:"Cyzone", categoria:'damas', nombre:"Sweet Black Pink Addict",
+      descripcion:"Aroma oriental dulce.", precio:"$17,50",
+      foto:"fotos/sweet-black-pink-addict-cyzone.jpg",
+      notas:{ tipo:'general', familia:'Oriental dulce',
+        texto:"Notas olfativas: moras, flores de violeta imperial y toques cítricos." } },
+
+    { id:'girlink-connection', marca:"Cyzone", categoria:'damas', nombre:"Girlink Connection",
+      descripcion:"Perfume floral.", precio:"$16,75",
+      foto:"fotos/girlink-connection-cyzone.jpg",
+      notas:{ tipo:'general', familia:'Floral',
+        texto:"Notas olfativas: frutos rojos, jazmín egipcio y exótica vainilla." } },
+
+    { id:'sweet-black-intense', marca:"Cyzone", categoria:'damas', nombre:"Sweet Black Intense",
+      descripcion:"Aroma oriental dulce.", precio:"$18,00",
+      foto:"fotos/sweet-black-intense-cyzone.jpg",
+      notas:{ tipo:'general', familia:'Oriental dulce',
+        texto:"Notas olfativas: almendra tostada y vainilla." } },
+
+    { id:'sweet-black', marca:"Cyzone", categoria:'damas', nombre:"Sweet Black",
+      descripcion:"El original de la línea Sweet Black.", precio:"$17,50",
+      foto:"fotos/sweet-black-cyzone.jpg",
+      notas:{ tipo:'general', familia:'Oriental amaderado',
+        texto:"Notas olfativas: pink pomelo y sándalo, con fondo de ámbar y especias." } },
+
+    { id:'identity', marca:"Cyzone", categoria:'damas', nombre:"Identity",
+      descripcion:"Perfume frutal chypre.", precio:"$15,00",
+      foto:"fotos/identity-cyzone.jpg",
+      notas:{ tipo:'general', familia:'Frutal / Chypre',
+        texto:"Notas olfativas: mezcla de notas frutales, envolvente corazón de jazmín y cremoso fondo de sándalo." } },
+
+    { id:'dancing-soul', marca:"Cyzone", categoria:'damas', nombre:"Dancing Soul",
+      descripcion:"Perfume floral fresco.", precio:"$16,00",
+      foto:"fotos/dancing-soul-cyzone.jpg",
+      notas:{ tipo:'general', familia:'Floral fresco',
+        texto:"Notas olfativas: jazmín, manzana verde y ámbar." } },
+
+    { id:'satin-rouge', marca:"L'bel", categoria:'damas', nombre:"Satin Rouge",
+      descripcion:"Perfume oriental dulce.", precio:"$32,00",
+      foto:"fotos/satin-rouge-lbel.jpg",
+      notas:{ tipo:'detallada', familia:'Oriental dulce',
+        salida:"Bergamota, pimienta rosada, frambuesa",
+        corazon:"Orquídea de Madagascar",
+        fondo:"Benjuí, sándalo de India, cumarina" } },
+
+    { id:'liasson', marca:"L'bel", categoria:'damas', nombre:"Liasson",
+      descripcion:"Perfume floral con lirio del valle.", precio:"$30,00",
+      foto:"fotos/liasson-lbel.jpg",
+      notas:{ tipo:'detallada', familia:'Floral',
+        salida:"Notas frutales, bergamota, durazno",
+        corazon:"Lirio del valle, iris, orris",
+        fondo:"Sándalo, cedro, ámbar, musk, vainilla" } },
+
+    // ---------- Dermocosmética L'bel ----------
+    { id:'concentre-total-b3', marca:"L'bel", categoria:'damas', nombre:"Concentré Total B3 · 10% Niacinamide",
+      descripcion:"Suero facial para emparejar el tono de la piel.", precio:"$13,00",
+      foto:"fotos/concentre-total-b3-niacinamide-lbel.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Niacinamida (Vitamina B3) al 10%",
+        beneficios:"Empareja el tono de la piel desde el primer uso, aporta luminosidad y ayuda a revelar una piel con aspecto más joven e hidratado.",
+        modoUso:"Aplicar 3-4 gotas sobre el rostro limpio, día y noche, siempre antes de la crema facial.",
+        piel:"Todo tipo de piel. Recomendado para mujeres desde los 30 años." } },
+
+    { id:'concentre-cell-45', marca:"L'bel", categoria:'damas', nombre:"Concentré Cell+ 45 · Pro-Colágeno Noche",
+      descripcion:"Crema facial antiarrugas de uso nocturno.", precio:"$22,50",
+      foto:"fotos/concentre-cell-45-pro-colageno-lbel.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Tecnología Cell+ de acción celular, Pro-Colágeno",
+        beneficios:"Estimula hasta 121% más producción de colágeno, brindando una piel más firme, con menos arrugas, mejor elasticidad y efecto filler inmediato.",
+        modoUso:"Aplicar de noche en frente, mentón y mejillas, masajeando con movimientos circulares hacia el exterior.",
+        piel:"Ideal para mujeres de 45 años en adelante." } },
+
+    { id:'concentre-cell-hialuronico', marca:"L'bel", categoria:'damas', nombre:"Concentré Cell · Ácido Hialurónico FPS30",
+      descripcion:"Crema facial antiedad de uso diurno con protección solar.", precio:"$22,50",
+      foto:"fotos/concentre-cell-hialuronico-fps30-lbel.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Ácido hialurónico + FPS 30",
+        beneficios:"Aporta hidratación inmediata y profunda, protección solar diaria y reduce las líneas de expresión mientras protege del fotoenvejecimiento.",
+        modoUso:"Aplicar por la mañana después de limpiar el rostro y aplicar un sérum especializado.",
+        piel:"Todo tipo de piel." } },
+
+    { id:'defense-total-fps50', marca:"L'bel", categoria:'damas', nombre:"Défense Total · FPS 50 Anti-Edad",
+      descripcion:"Protector solar facial con acción anti-edad.", precio:"$8,50",
+      foto:"fotos/defense-total-fps50-lbel.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"3x ácido hialurónico + Pro Collagen, filtros solares de amplio espectro",
+        beneficios:"Protección UVA/UVB de alta gama, acción anti-edad que ayuda a reducir hasta 7 años de arrugas, textura ultraligera de absorción inmediata, resistente al agua y el sudor.",
+        modoUso:"Aplicar diariamente sobre el rostro limpio; reaplicar cada 2 horas o después de nadar/sudar.",
+        piel:"Todo tipo de piel, fórmula hipoalergénica dermatológicamente probada." } },
+
+    { id:'forever-hydra-72h', marca:"L'bel", categoria:'damas', nombre:"Forever Hydra 72H",
+      descripcion:"Base de maquillaje hidratante de larga duración.", precio:"$12,50",
+      foto:"fotos/forever-hydra-72h-lbel.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Ácido hialurónico + niacinamida",
+        beneficios:"Mantiene la piel hidratada hasta 72 horas incluso después de retirar la base, alta cobertura, acabado mate natural, no deja sensación pegajosa, protección FPS15.",
+        modoUso:"Aplicar sobre frente, nariz, pómulos y mentón; extender con brocha o esponja.",
+        piel:"Piel normal a seca." } },
+
+    { id:'forever-ultra-matte', marca:"L'bel", categoria:'damas', nombre:"Forever Ultra Matte",
+      descripcion:"Base de maquillaje control de brillo.", precio:"$12,50",
+      foto:"fotos/forever-ultra-matte-lbel.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Fórmula 100% oil free",
+        beneficios:"Controla el brillo hasta 24 horas, reduce la apariencia de los poros, acabado ultra mate de larga duración, protección FPS15.",
+        modoUso:"Aplicar sobre el rostro limpio con brocha o esponja para un acabado uniforme.",
+        piel:"Piel normal a grasa." } },
+
+    { id:'nocturne-serum-pm', marca:"L'bel", categoria:'damas', nombre:"Nocturne Sérum PM · 12% Ácido Glicólico",
+      descripcion:"Sérum intensivo efecto peeling nocturno, edición limitada.", precio:"$18,50",
+      foto:"fotos/nocturne-serum-pm-lbel.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"12% complejo con ácido glicólico",
+        beneficios:"Efecto peeling que acelera la renovación celular y mejora la textura de la piel, dejándola visiblemente renovada.",
+        modoUso:"Uso exclusivamente nocturno, 2-3 veces por semana. Agitar antes de usar. Aplicar protector solar al día siguiente.",
+        piel:"Todo tipo de piel; iniciar con uso progresivo." } },
+
+    { id:'specialiste-aclarador-nocturno', marca:"L'bel", categoria:'damas', nombre:"Spécialiste Concentrado Aclarador Nocturno",
+      descripcion:"Concentrado antimanchas de uso nocturno.", precio:"$17,50",
+      foto:"fotos/specialiste-aclarador-nocturno-lbel.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Niacinamida",
+        beneficios:"3x poder: reduce, previene y repara manchas durante la noche. Aclara la intensidad y el tamaño de las manchas, unifica el tono desde el primer uso.",
+        modoUso:"Aplicar de noche después del Sérum Spécialiste Antimanchas, en frente, mentón y mejillas con masaje circular.",
+        piel:"Piel con manchas o tono desigual." } },
+
+    { id:'specialiste-matificante', marca:"L'bel", categoria:'damas', nombre:"Spécialiste Concentrado Matificante",
+      descripcion:"Crema-gel minimizadora de poros.", precio:"$17,50",
+      foto:"fotos/specialiste-matificante-lbel.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Ácido mandélico + ácido hialurónico",
+        beneficios:"24 horas de matificación e hidratación, reduce la apariencia de los poros hasta 42%, hasta 3x reducción de brillo e imperfecciones.",
+        modoUso:"Aplicar de día o de noche después del sérum, en frente, mentón y mejillas con masaje circular.",
+        piel:"Piel mixta a grasa." } },
+
+    // ---------- Nuevos perfumes L'bel / Ésika / Cyzone ----------
+    { id:'bleu-femme-capri', marca:"L'bel", categoria:'damas', nombre:"Bleu Femme Capri",
+      descripcion:"Perfume floral frutal inspirado en la isla de Capri.", precio:"$28,50",
+      foto:"fotos/bleu-femme-capri-lbel.jpg",
+      notas:{ tipo:'general', familia:'Floral frutal',
+        texto:"Delicadas notas de pera francesa y frescos toques de naranja se fusionan con un elegante bouquet de flores y ámbar." } },
+
+    { id:'bleu-femme', marca:"L'bel", categoria:'damas', nombre:"Bleu Femme",
+      descripcion:"Perfume floral fresco.", precio:"$28,50",
+      foto:"fotos/bleu-femme-lbel.jpg",
+      notas:{ tipo:'general', familia:'Floral',
+        texto:"Notas de bergamota y rosas francesas, para un aroma fresco y elegante." } },
+
+    { id:'bleu-intense', marca:"L'bel", categoria:'caballeros', nombre:"Bleu Intense",
+      descripcion:"Perfume masculino fresco y sofisticado.", precio:"$33,50",
+      foto:"fotos/bleu-intense-lbel.jpg",
+      notas:{ tipo:'general', familia:'Herbal amaderado',
+        texto:"Notas herbales de salvia, haba tonka y bayas de enebro. Elaborado por el perfumista Jacques Huclier de Givaudan." } },
+
+    { id:'bleu-night', marca:"L'bel", categoria:'caballeros', nombre:"Bleu Night",
+      descripcion:"Perfume masculino amaderado acuático.", precio:"$33,50",
+      foto:"fotos/bleu-night-lbel.jpg",
+      notas:{ tipo:'general', familia:'Amaderado acuático',
+        texto:"Notas de salvia sclarea, cedro y acordes acuáticos." } },
+
+    { id:'expression-sens', marca:"Ésika", categoria:'damas', nombre:"Expression Sens",
+      descripcion:"Perfume floral chypre maderoso.", precio:"$16,75",
+      foto:"fotos/expression-sens-esika.jpg",
+      notas:{ tipo:'detallada', familia:'Chypre maderoso',
+        salida:"Mandarina italiana, pera, bergamota",
+        corazon:"Pomarose, jazmín, flor de azahar del naranjo",
+        fondo:"Ambrofix, ambrettolide, cedro, pachulí" } },
+
+    { id:'homme-033', marca:"L'bel", categoria:'caballeros', nombre:"Homme 033",
+      descripcion:"Perfume masculino herbal aromático de alta perfumería francesa.", precio:"$33,50",
+      foto:"fotos/homme-033-lbel.jpg",
+      notas:{ tipo:'general', familia:'Herbal aromático',
+        texto:"La elegante frescura del geranio de bourbon se combina con embriagantes acordes de cognac, desbordando masculinidad. Concentración máxima, alta perfumería francesa (LM Naturals by IFF)." } },
+
+    { id:'kalos-champion', marca:"Ésika", categoria:'caballeros', nombre:"Kalos Champion",
+      descripcion:"Perfume masculino herbal aromático, inspirado en el fútbol.", precio:"$20,50",
+      foto:"fotos/kalos-champion-esika.jpg",
+      notas:{ tipo:'detallada', familia:'Herbal aromático',
+        salida:"Bergamota, mandarina, manzana verde, pera, hojas verdes",
+        corazon:"Romero, lavanda, geranio azul",
+        fondo:"Madera de cedro, pachulí, musgo de roble, almizcle" } },
+
+    { id:'live-adventure', marca:"L'bel", categoria:'caballeros', nombre:"Live Adventure",
+      descripcion:"Perfume masculino de alta concentración.", precio:"$32,50",
+      foto:"fotos/live-adventure-lbel.jpg",
+      notas:{ tipo:'detallada', familia:'Amaderado frutal',
+        salida:"Menta, manzana verde, bergamota",
+        corazon:"Hojas de cedro, nuez moscada, herbarome",
+        fondo:"Sándalo australiano, ámbar, tonka" } },
+
+    { id:'magnat', marca:"Ésika", categoria:'caballeros', nombre:"Magnat",
+      descripcion:"Perfume masculino amaderado con notas de cuero.", precio:"$22,50",
+      foto:"fotos/magnat-esika.jpg",
+      notas:{ tipo:'detallada', familia:'Cuero',
+        salida:"Manzana, hojas de violeta, cardamomo negro, ciprés, esclarea",
+        corazon:"Whisky, cedro, geranio, flor de azahar del naranjo, nenúfar",
+        fondo:"Cuero, musgo de roble, sándalo, madera de guaiac, almizcle, ámbar" } },
+
+    { id:'momentos-radiantes', marca:"Ésika", categoria:'damas', nombre:"Momentos Radiantes",
+      descripcion:"Perfume floral, fresco y enérgico.", precio:"$18,50",
+      foto:"fotos/momentos-radiantes-esika.jpg",
+      notas:{ tipo:'detallada', familia:'Floral',
+        salida:"Limón italiano",
+        corazon:"Pétalos de peonía",
+        fondo:"Madera de cedro" } },
+
+    { id:'mon-lbel', marca:"L'bel", categoria:'damas', nombre:"Mon L'bel",
+      descripcion:"Perfume oriental dulce de alta perfumería francesa.", precio:"$32,00",
+      foto:"fotos/mon-lbel.jpg",
+      notas:{ tipo:'detallada', familia:'Oriental dulce',
+        salida:"Bergamota, cassis, coulis de manzana",
+        corazon:"Base de Laire, jazmín sambac, magnolia",
+        fondo:"Cashmere, sándalo, pachulí, ámbar, musk" } },
+
+    { id:'nitro-intense', marca:"Cyzone", categoria:'caballeros', nombre:"Nitro Intense",
+      descripcion:"Perfume masculino oriental especiado.", precio:"$18,50",
+      foto:"fotos/nitro-intense-cyzone.jpg",
+      notas:{ tipo:'general', familia:'Oriental especiado',
+        texto:"Aroma oriental especiado con intensas notas de nuez moscada y sándalo." } },
+
+    { id:'all-black', marca:"Cyzone", categoria:'caballeros', nombre:"All Black",
+      descripcion:"Perfume masculino oriental especiado.", precio:"$18,50",
+      foto:"fotos/all-black-cyzone.jpg",
+      notas:{ tipo:'general', familia:'Oriental especiado',
+        texto:"Toques frescos de cardamomo, notas dulces de tonka y cremoso cedro." } },
+
+    { id:'all-black-vip', marca:"Cyzone", categoria:'caballeros', nombre:"All Black VIP",
+      descripcion:"Perfume masculino de muy alta concentración.", precio:"$18,50",
+      foto:"fotos/all-black-vip-cyzone.jpg",
+      notas:{ tipo:'general', familia:'Oriental maderoso',
+        texto:"Combina el toque especiado de la pimienta negra con la calidez del ámbar y el sándalo." } },
+
+    { id:'lattraction', marca:"L'bel", categoria:'caballeros', nombre:"L'Attraction",
+      descripcion:"Perfume masculino amaderado especiado.", precio:"$35,00",
+      foto:"fotos/lattraction-lbel.jpg",
+      notas:{ tipo:'general', familia:'Amaderado especiado',
+        texto:"Notas de vetiver de Madagascar, pimienta negra y salvia." } },
+
+    { id:'nitro-air', marca:"Cyzone", categoria:'caballeros', nombre:"Nitro Air",
+      descripcion:"Perfume masculino herbal aromático.", precio:"$18,50",
+      foto:"fotos/nitro-air-cyzone.jpg",
+      notas:{ tipo:'detallada', familia:'Fougère aromático',
+        salida:"Acordes frescos de aire libre",
+        corazon:"Lavanda, pimienta blanca",
+        fondo:"Sándalo, madera de guaiac" } },
+
+    { id:'nitro-night', marca:"Cyzone", categoria:'caballeros', nombre:"Nitro Night",
+      descripcion:"Perfume masculino herbal aromático nocturno.", precio:"$18,50",
+      foto:"fotos/nitro-night-cyzone.jpg",
+      notas:{ tipo:'general', familia:'Herbal aromático',
+        texto:"Frescura de jengibre, licorosas notas de vetiver y la calidez del ámbar." } },
+
+    { id:'live-frontier', marca:"L'bel", categoria:'caballeros', nombre:"Live Frontier",
+      descripcion:"Perfume masculino amaderado.", precio:"$32,50",
+      foto:"fotos/live-frontier-lbel.jpg",
+      notas:{ tipo:'general', familia:'Amaderado',
+        texto:"Notas de musk, bergamota, madera y ámbar." } },
+
+    { id:'cherie', marca:"L'bel", categoria:'damas', nombre:"Chérie",
+      descripcion:"Perfume floral de muy alta concentración.", precio:"$28,50",
+      foto:"fotos/cherie-lbel.jpg",
+      notas:{ tipo:'general', familia:'Floral',
+        texto:"Notas de frambuesa, bouquet de flores francesas y almizcle cremoso." } },
+
+    { id:'mithyka', marca:"L'bel", categoria:'damas', nombre:"Mithyka",
+      descripcion:"Fragancia floral oriental que rinde tributo a la mujer poderosa, capaz de despertar los deseos escondidos.",
+      precio:"$32,00",
+      foto:"fotos/mithyka-lbel.jpg",
+      notas:{ tipo:'detallada', familia:'Floral Oriental',
+        salida:"Acorde voluptuoso, semilla de Himalaya, ciruela, durazno, cassis",
+        corazon:"Jazmín Sambaq, tuberosa, flor de hibisco, muguet, peonía, aceite de rosa, hojas de violeta, iris, tiaré de Tahití",
+        fondo:"Almizcle cautivo, sándalo de India, ámbar, noble madera de cedro" } },
+
+    { id:'y25', marca:"Cyzone", categoria:'damas', nombre:"Y25",
+      descripcion:"Perfume floral frutal, edición Mundial.", precio:"$15,00",
+      foto:"fotos/y25-cyzone.jpg",
+      notas:{ tipo:'general', familia:'Floral frutal',
+        texto:"Aroma especial y único con dulces notas de frambuesa, delicados toques de jazmín e irresistible ámbar." } },
+
+    // ---------- Perfumes, colonias y cuidado personal (lote 3) ----------
+    { id:'sweet-black-seduction', marca:"Cyzone", categoria:'damas', nombre:"Sweet Black Seduction",
+      descripcion:"Perfume oriental dulce frutal.", precio:"$17,50",
+      foto:"fotos/sweet-black-seduction-cyzone.jpg",
+      notas:{ tipo:'general', familia:'Oriental dulce frutal',
+        texto:"Aroma seductor con jugosos toques de frambuesa, notas de rosa y cremosa vainilla." } },
+
+    { id:'vibranza-addiction', marca:"Ésika", categoria:'damas', nombre:"Vibranza Addiction",
+      descripcion:"Perfume floral maderoso.", precio:"$18,50",
+      foto:"fotos/vibranza-addiction-esika.jpg",
+      notas:{ tipo:'detallada', familia:'Floral maderoso',
+        salida:"Licor de cassis",
+        corazon:"Pétalos de rosa",
+        fondo:"Madera de oud" } },
+
+    { id:'colors-nature-golden-vainilla', marca:"Ésika", categoria:'damas', nombre:"Colors in Nature · Golden Vainilla",
+      descripcion:"Colonia corporal con aroma a vainilla.", precio:"$7,50",
+      foto:"fotos/colors-nature-golden-vainilla-esika.jpg",
+      notas:{ tipo:'general', familia:'Dulce',
+        texto:"Aroma envolvente de vainilla, inspirado en atardeceres dorados de playa." } },
+
+    { id:'colors-nature-green-coconut', marca:"Ésika", categoria:'damas', nombre:"Colors in Nature · Green Coconut",
+      descripcion:"Colonia corporal con aroma a coco.", precio:"$7,50",
+      foto:"fotos/colors-nature-green-coconut-esika.jpg",
+      notas:{ tipo:'general', familia:'Fresco tropical',
+        texto:"Aroma fresco y cremoso de coco, inspirado en playas tropicales." } },
+
+    { id:'colors-nature-tropical-vibes', marca:"Ésika", categoria:'damas', nombre:"Colors in Nature · Tropical Vibes",
+      descripcion:"Colonia corporal con aroma a frutas tropicales.", precio:"$7,50",
+      foto:"fotos/colors-nature-tropical-vibes-esika.jpg",
+      notas:{ tipo:'general', familia:'Frutal tropical',
+        texto:"Aroma vibrante de pitahaya y naranja, con un toque floral tropical." } },
+
+    { id:'destine-marsella', marca:"L'bel", categoria:'damas', nombre:"Destiné Marsella · Berry Bouquet",
+      descripcion:"Fine fragrance mist corporal.", precio:"$10,00",
+      foto:"fotos/destine-marsella-berry-bouquet-lbel.jpg",
+      notas:{ tipo:'general', familia:'Frutal floral',
+        texto:"Aroma de berries (frutos del bosque) y jazmín." } },
+
+    { id:'destine-vienna', marca:"L'bel", categoria:'damas', nombre:"Destiné Vienna · Fruity Peach",
+      descripcion:"Fine fragrance mist corporal.", precio:"$10,00",
+      foto:"fotos/destine-vienna-fruity-peach-lbel.jpg",
+      notas:{ tipo:'general', familia:'Frutal',
+        texto:"Aroma de lychee y durazno." } },
+
+    { id:'men-active', marca:"Ésika", categoria:'caballeros', nombre:"Men Active",
+      descripcion:"Colonia refrescante herbal aromática.", precio:"$8,50",
+      foto:"fotos/men-active-esika.jpg",
+      notas:{ tipo:'detallada', familia:'Herbal aromático',
+        salida:"Bergamota, toronja, acorde ozónico, hojas verdes, hojas de menta, lavanda, romero español",
+        corazon:"Clavel, ciclamen, anís de estrella, jazmín",
+        fondo:"Patchouli, sándalo, tonca, ámbar, cashmeran, madera de ciprés" } },
+
+    { id:'miss-sexy-radiant', marca:"Cyzone", categoria:'damas', nombre:"Miss Sexy Radiant",
+      descripcion:"Colonia refrescante con brillo (glitter).", precio:"$8,50",
+      foto:"fotos/miss-sexy-radiant-cyzone.jpg",
+      notas:{ tipo:'general', familia:'Floral frutal',
+        texto:"Colonia refrescante de larga duración, con notas dulces y sensuales, y un toque de brillo (glitter) en su fórmula." } },
+
+    { id:'xplash-comando', marca:"Ésika", categoria:'ninos', nombre:"Xplash Comando Force",
+      descripcion:"Colonia splash para niños.", precio:"$6,50",
+      foto:"fotos/xplash-comando-esika.jpg",
+      notas:{ tipo:'general', familia:'Frutal',
+        texto:"Aroma refrescante a frutas tropicales. Recomendada a partir de los 6 años." } },
+
+    { id:'destine-florence', marca:"L'bel", categoria:'damas', nombre:"Destiné Florence · Floral Rosé",
+      descripcion:"Fine fragrance mist corporal.", precio:"$10,00",
+      foto:"fotos/destine-florence-floral-rose-lbel.jpg",
+      notas:{ tipo:'general', familia:'Floral cítrico',
+        texto:"Notas de limón y acentos cítricos, sobre un fondo floral." } },
+
+    { id:'triple-accion-max-40', marca:"Ésika", categoria:'damas', nombre:"Triple Acción Max 40+ Hidra Reafirmante",
+      descripcion:"Crema facial multibeneficios.", precio:"$10,50",
+      foto:"fotos/triple-accion-max-40-esika.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Ácido hialurónico, colágeno vegano y vitamina B5",
+        beneficios:"Hidrata el rostro por 24 horas, reafirma y disminuye la apariencia de arrugas propias de los 40+.",
+        modoUso:"Aplicar sobre el cutis limpio, día y noche, con masajes circulares hasta su absorción.",
+        piel:"Apta para todo tipo de piel, mujeres desde los 40 años." } },
+
+    { id:'natural-care-durazno-coco', marca:"Ésika", categoria:'damas', nombre:"Natural Care · Durazno & Coco",
+      descripcion:"Crema humectante corporal.", precio:"$12,50",
+      foto:"fotos/natural-care-durazno-coco-esika.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Extracto de durazno y extracto de coco",
+        beneficios:"Hidratación hasta por 48 horas; el durazno suaviza y revitaliza, el coco nutre y protege la piel.",
+        modoUso:"Aplicar por las mañanas y/o noches, después del baño, en todo el cuerpo, con énfasis en zonas secas.",
+        piel:"Todo tipo de piel." } },
+
+    { id:'dream-crema-manos', marca:"Ésika", categoria:'damas', nombre:"Dream · Crema Nutritiva para Manos",
+      descripcion:"Crema para manos con el aroma de Dream.", precio:"$6,75",
+      foto:"fotos/dream-crema-manos-esika.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Fórmula nutritiva perfumada con notas de pera de Provence, magnolia y cedro",
+        beneficios:"Nutre intensamente e hidrata las manos hasta por 48 horas, perfumándolas con el aroma de Dream.",
+        modoUso:"Aplicar sobre las manos las veces que sea necesario durante el día.",
+        piel:"Todo tipo de piel." } },
+
+    { id:'multicare-manos-unas', marca:"Ésika", categoria:'damas', nombre:"Multicare · Manos & Uñas Perfectas",
+      descripcion:"Crema multiactiva para manos y uñas.", precio:"$8,50",
+      foto:"fotos/multicare-manos-unas-esika.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Vitaminas A y E, queratina y calcio",
+        beneficios:"Humecta, revitaliza y suaviza las manos, además de fortalecer las uñas y proteger de la resequedad.",
+        modoUso:"Aplicar sobre manos y uñas, masajeando suavemente hasta su completa absorción.",
+        piel:"Todo tipo de piel." } },
+
+    { id:'sweet-black-intense-crema', marca:"Cyzone", categoria:'damas', nombre:"Sweet Black Intense · Crema Perfumada",
+      descripcion:"Crema corporal perfumada.", precio:"$6,50",
+      foto:"fotos/sweet-black-intense-crema-cyzone.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Fórmula hidratante perfumada con notas de almendra tostada y vainilla",
+        beneficios:"Hidrata la piel y prolonga el aroma del perfume Sweet Black Intense; fórmula hipoalergénica.",
+        modoUso:"Aplicar sobre la piel limpia después de la ducha; reaplicar durante el día.",
+        piel:"Todo tipo de piel." } },
+
+    { id:'defense-total-fps50-plus', marca:"L'bel", categoria:'damas', nombre:"Défense Total FPS 50+ Rostro y Cuerpo",
+      descripcion:"Protector solar de amplio espectro.", precio:"$13,00",
+      foto:"fotos/defense-total-fps50-plus-lbel.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Tecnología Beauty Protect, vitamina E y bioprotectores de colágeno",
+        beneficios:"Protección FPS 50+ de amplio espectro (UVA, UVB, IR y luz azul), textura ultraligera de absorción inmediata, resistente al agua y sudor. Previene el fotoenvejecimiento y las manchas solares.",
+        modoUso:"Aplicar 30 minutos antes de la exposición solar sobre rostro y cuerpo; reaplicar cada 2 horas.",
+        piel:"Todo tipo de piel." } },
+
+    { id:'essential-desmaquillador', marca:"L'bel", categoria:'damas', nombre:"L'Essential · Desmaquillador Bifásico",
+      descripcion:"Loción desmaquillante bifásica para ojos, rostro y labios.", precio:"$8,75",
+      foto:"fotos/essential-desmaquillador-bifasico-lbel.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Fórmula bifásica (fase oleosa + fase acuosa) con agua de rosas y provitamina B5",
+        beneficios:"Remueve maquillaje a prueba de agua sin dejar residuos grasos; libera la piel de impurezas, hidrata y protege las pestañas.",
+        modoUso:"Agitar hasta mezclar las dos fases, aplicar con un algodón sobre ojos, rostro y labios.",
+        piel:"Todo tipo de piel, dermatológica y oftalmológicamente probado." } },
+
+    { id:'dry-effect-48', marca:"L'bel", categoria:'damas', nombre:"Dry Effect 48 · Desodorante Antitranspirante",
+      descripcion:"Desodorante antitranspirante en aerosol.", precio:"$7,50",
+      foto:"fotos/dry-effect-48-lbel.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Microcápsulas termoactivas, vitamina E y derivados de la seda",
+        beneficios:"Controla la sudoración y el mal olor hasta por 48 horas; protege y suaviza la piel de las axilas.",
+        modoUso:"Agitar antes de usar y aplicar una capa sobre la zona a unos 15 cm de distancia.",
+        piel:"Todo tipo de piel." } },
+
+    { id:'defense-total-vitamina-e', marca:"L'bel", categoria:'damas', nombre:"Défense Total FPS 50 · Vitamina E",
+      descripcion:"Protector solar de amplio espectro.", precio:"$12,00",
+      foto:"fotos/defense-total-vitamina-e-lbel.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Vitamina E y bioprotectores de colágeno",
+        beneficios:"Protección FPS 50 de amplio espectro (UVB/UVA/infrarrojo), rápida absorción, resistente al agua y sudor.",
+        modoUso:"Aplicar sobre rostro y cuerpo antes de la exposición solar; reaplicar cada 2 horas.",
+        piel:"Todo tipo de piel." } },
+
+    // ---------- Skincare, capilar y maquillaje (lote 4) ----------
+    { id:'experte-liso-impecable', marca:"L'bel", categoria:'damas', nombre:"Experté · Sérum Capilar Liso Impecable",
+      descripcion:"Sérum capilar con ácido hialurónico.", precio:"$10,00",
+      foto:"fotos/experte-liso-impecable-lbel.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Complejo Hialu-Proteico (ácido hialurónico + súper-proteínas) y tecnología Microalisantes",
+        beneficios:"Prolonga el liso del cabello y bloquea el frizz hasta por 72 horas; deja el cabello manejable, saludable y brillante.",
+        modoUso:"Aplicar en cabello húmedo o seco al finalizar el peinado; no necesita enjuague.",
+        piel:"Todo tipo de cabello, especialmente deshidratado, con frizz o sin brillo." } },
+
+    { id:'essential-limpiadora-suave', marca:"L'bel", categoria:'damas', nombre:"Essential · Limpiadora Suave",
+      descripcion:"Espuma limpiadora facial.", precio:"$8,50",
+      foto:"fotos/essential-limpiadora-suave-lbel.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"6% Sensitive Complex",
+        beneficios:"Máxima limpieza ultra suave, cero irritaciones; elimina impurezas respetando el pH natural de la piel.",
+        modoUso:"Mezclar una pequeña cantidad con agua en la mano, aplicar con masajes circulares (evitando el área de ojos) y enjuagar.",
+        piel:"Apta para pieles sensibles y todo tipo de piel." } },
+
+    { id:'estuche-cejas-ojos', marca:"L'bel", categoria:'damas', nombre:"Estuche Perfeccionador de Cejas y Ojos",
+      descripcion:"Paleta 4 en 1 con aplicadores.", precio:"$14,75",
+      foto:"fotos/estuche-cejas-ojos-lbel.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Producto de maquillaje (no aplica)",
+        beneficios:"Estuche 4 en 1 con polvos en tonos neutros y aplicadores especializados para definir cejas y perfeccionar la mirada; incluye espejo.",
+        modoUso:"Usar los aplicadores incluidos para rellenar y definir cejas, y difuminar sombra en los ojos.",
+        piel:"No aplica (producto de maquillaje)." } },
+
+    { id:'fleur-divine-crema', marca:"L'bel", categoria:'damas', nombre:"Fleur Divine · Crema Perfumada Corporal",
+      descripcion:"Crema corporal iluminadora con el aroma de Fleur Divine.", precio:"$6,50",
+      foto:"fotos/fleur-divine-crema-lbel.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Fórmula perfumada con notas de iris francés, pera y bergamota dorada",
+        beneficios:"Hidrata la piel dejándola suave y perfumada con un toque iluminador.",
+        modoUso:"Aplicar sobre la piel después del baño para prolongar el aroma del perfume Fleur Divine.",
+        piel:"Todo tipo de piel." } },
+
+    { id:'forever-matte-36h', marca:"L'bel", categoria:'damas', nombre:"Forever Matte 36H · Polvo Compacto",
+      descripcion:"Polvo compacto control de brillo.", precio:"$17,50",
+      foto:"fotos/forever-matte-36h-polvo-lbel.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Fórmula 100% oil free",
+        beneficios:"36 horas de acabado mate: cero brillos, poros e imperfecciones; alta cobertura, no transfer, FPS15.",
+        modoUso:"Aplicar con brocha después de la base: frente, nariz y mentón, luego mejillas.",
+        piel:"Piel normal a grasa." } },
+
+    { id:'homme-expert-hidratante', marca:"L'bel", categoria:'caballeros', nombre:"Homme Expert · Hidratante",
+      descripcion:"Hidratante facial antiedad para hombre.", precio:"$8,50",
+      foto:"fotos/homme-expert-hidratante-lbel.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Ácido hialurónico y niacinamida",
+        beneficios:"Hidratación por 48 horas, efecto antiarrugas y reducción de brillo.",
+        modoUso:"Aplicar en el rostro día y noche, como paso 2 de la rutina (después del limpiador).",
+        piel:"Todo tipo de piel masculina." } },
+
+    { id:'homme-expert-limpiador', marca:"L'bel", categoria:'caballeros', nombre:"Homme Expert · Limpiador",
+      descripcion:"Limpiador facial en gel para hombre.", precio:"$8,50",
+      foto:"fotos/homme-expert-limpiador-lbel.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Carbón activado y ácido salicílico",
+        beneficios:"3x limpieza profunda: reduce oleosidad y controla el brillo; previene puntos negros e imperfecciones.",
+        modoUso:"Aplicar en frente, mentón y mejillas, masajear con movimientos circulares y enjuagar. Uso día y noche.",
+        piel:"Todo tipo de piel masculina." } },
+
+    { id:'freshing-body-splash', marca:"Ésika", categoria:'damas', nombre:"Natural Care · Freshing",
+      descripcion:"Body splash refrescante.", precio:"$17,50",
+      foto:"fotos/freshing-body-splash-esika.jpg",
+      notas:{ tipo:'general', familia:'Fresco herbal',
+        texto:"Body splash de la línea Natural Care con un aroma herbal fresco, inspirado en hojas verdes." } },
+
+    { id:'dancing-night-locion', marca:"Cyzone", categoria:'damas', nombre:"Dancing Night · Crema Corporal",
+      descripcion:"Crema perfumada hidratante corporal.", precio:"$6,50",
+      foto:"fotos/dancing-night-locion-cyzone.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Fórmula perfumada con notas de vainilla y ciruela (oriental dulce)",
+        beneficios:"Hidrata la piel dejándola suave y perfumada con el aroma Dancing Night.",
+        modoUso:"Aplicar sobre la piel después del baño.",
+        piel:"Todo tipo de piel." } },
+
+    { id:'hypnotisant-crema', marca:"L'bel", categoria:'damas', nombre:"Hypnotisant · Loción Cremante Perfumada",
+      descripcion:"Crema corporal hidratante perfumada.", precio:"$6,50",
+      foto:"fotos/hypnotisant-crema-lbel.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Fórmula perfumada con notas de pera francesa, magnolia y cashmere",
+        beneficios:"Hidrata la piel dejándola suave y perfumada con el aroma Hypnotisant.",
+        modoUso:"Aplicar sobre la piel después del baño.",
+        piel:"Todo tipo de piel." } },
+
+    { id:'liasson-crema', marca:"L'bel", categoria:'damas', nombre:"Liasson · Crema Perfumada Corporal",
+      descripcion:"Crema corporal hidratante con el aroma de Liasson.", precio:"$6,50",
+      foto:"fotos/liasson-crema-lbel.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Fórmula perfumada con notas de bergamota, durazno, lirio del valle y sándalo",
+        beneficios:"Hidrata la piel prolongando el aroma del perfume Liasson.",
+        modoUso:"Aplicar sobre la piel después del baño.",
+        piel:"Todo tipo de piel." } },
+
+    { id:'exfoliante-facial-triple-accion', marca:"Ésika", categoria:'damas', nombre:"Triple Acción Max · Exfoliante Facial",
+      descripcion:"Exfoliante facial con arcillas detox.", precio:"$8,50",
+      foto:"fotos/exfoliante-facial-triple-accion-esika.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Arcillas Detox Pura",
+        beneficios:"Minimiza la apariencia de puntos negros, purifica y matifica la piel.",
+        modoUso:"Aplicar sobre rostro húmedo, masajear suavemente y enjuagar con agua.",
+        piel:"Piel mixta a grasa." } },
+
+    { id:'purple-berry', marca:"Ésika", categoria:'damas', nombre:"Colors in Nature · Purple Berry",
+      descripcion:"Colonia corporal con aroma a moras.", precio:"$7,50",
+      foto:"fotos/purple-berry-esika.jpg",
+      notas:{ tipo:'general', familia:'Frutal',
+        texto:"Aroma fresco y afrutado de moras (blackberries)." } },
+
+    { id:'nocturne-ojos', marca:"L'bel", categoria:'damas', nombre:"Nocturne · Contorno de Ojos",
+      descripcion:"Crema para contorno de ojos con roll-on.", precio:"$10,50",
+      foto:"fotos/nocturne-ojos-lbel.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"10% complejo con ácido hialurónico + Pro-Retinol",
+        beneficios:"Reduce la apariencia de bolsas, ojeras y patas de gallo; aporta firmeza al contorno de ojos.",
+        modoUso:"Con el aplicador roll-on, extender una capa fina desde el ángulo interno hacia afuera y masajear suavemente.",
+        piel:"Todo tipo de piel, para todas las edades." } },
+
+    { id:'oleo-vitamina-c', marca:"Ésika", categoria:'damas', nombre:"Triple Acción Max · Óleo Vitamina C",
+      descripcion:"Óleo facial antioxidante.", precio:"$6,50",
+      foto:"fotos/oleo-vitamina-c-esika.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Vitamina C",
+        beneficios:"Poder antioxidante; ayuda a iluminar la piel y protegerla del daño de los radicales libres.",
+        modoUso:"Aplicar unas gotas sobre el rostro limpio, día o noche.",
+        piel:"Todo tipo de piel." } },
+
+    { id:'perfect-block-fps50-rostro', marca:"Ésika", categoria:'damas', nombre:"Perfect Block FPS50 · Rostro",
+      descripcion:"Multiprotector solar facial acabado mate.", precio:"$6,50",
+      foto:"fotos/perfect-block-fps50-rostro-esika.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Extracto natural botánico, fórmula libre de aceites",
+        beneficios:"Alta protección FPS50 contra UVA, UVB y luz azul; acabado mate compatible con el maquillaje, rápida absorción.",
+        modoUso:"Aplicar sobre piel seca 30 minutos antes de la exposición solar; reaplicar cada 2 horas.",
+        piel:"Todo tipo de piel." } },
+
+    { id:'protector-hidratante-fps50', marca:"Ésika", categoria:'damas', nombre:"Triple Acción Max · Protector Solar Hidratante FPS50",
+      descripcion:"Protector solar hidratante facial.", precio:"$8,50",
+      foto:"fotos/protector-hidratante-fps50-esika.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Hidra Plus Complex y vitamina E",
+        beneficios:"Protección FPS50 + 12 horas de hidratación; ayuda a prevenir arrugas y manchas.",
+        modoUso:"Aplicar generosamente antes de la exposición solar; reaplicar tras nadar, sudar o secarse.",
+        piel:"Todo tipo de piel." } },
+
+    { id:'defense-total-antimanchas', marca:"L'bel", categoria:'damas', nombre:"Défense Total · Antimanchas con Color",
+      descripcion:"Protector solar con color, tono Naturelle.", precio:"$9,50",
+      foto:"fotos/defense-total-antimanchas-lbel.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"10% complejo con niacinamida + vitamina C",
+        beneficios:"Cubre, aclara y reduce manchas hiperpigmentadas; protección FPS50 con color (tono Naturelle).",
+        modoUso:"Aplicar 2 líneas de producto extendidas en 2 dedos, evitando ojos y labios; reaplicar cada 2 horas.",
+        piel:"Todo tipo de piel, incluso sensible." } },
+
+    { id:'protector-antiedad-fps100', marca:"Ésika", categoria:'damas', nombre:"Triple Acción Max · Protector Solar Antiedad FPS100",
+      descripcion:"Protector solar de muy alta protección.", precio:"$8,50",
+      foto:"fotos/protector-antiedad-fps100-esika.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Complejo de vitamina B5 y vitamina E",
+        beneficios:"Muy alta protección FPS100; acción antiedad, antioxidante y antibrillo.",
+        modoUso:"Aplicar generosamente sobre el rostro antes de la exposición solar.",
+        piel:"Todo tipo de piel." } },
+
+    { id:'perfect-block-fps50plus-cuerpo', marca:"Ésika", categoria:'damas', nombre:"Perfect Block FPS50+ · Rostro y Cuerpo",
+      descripcion:"Multiprotector solar resistente al agua y sudor.", precio:"$10,00",
+      foto:"fotos/perfect-block-fps50plus-cuerpo-esika.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Tecnología Beauty Protect",
+        beneficios:"Resistente al agua y sudor; protege de 6 tipos de radiación que causan envejecimiento, manchas y daño en la piel. Avalado por la Skin Cancer Foundation.",
+        modoUso:"Aplicar generosamente 15 minutos antes de la exposición solar.",
+        piel:"Todo tipo de piel, incluso sensible." } },
+
+    // ---------- Skincare y cuidado personal (lote 5) ----------
+    { id:'concentre-serum-hialuronico-15', marca:"L'bel", categoria:'damas', nombre:"Concentré · Sérum Relleno de Arrugas 15% Ácido Hialurónico",
+      descripcion:"Sérum facial intensivo reductor de arrugas.", precio:"$10,50",
+      foto:"fotos/concentre-serum-hialuronico-15-lbel.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"15% complejo con ácido hialurónico (encapsulado y de distintos tamaños), péptidos y extracto de algas",
+        beneficios:"Máxima concentración de ácido hialurónico que penetra 15 veces más profundo; reduce arrugas desde los 5 días con efecto relleno en 15 minutos; hidratación por 24 horas con un solo uso.",
+        modoUso:"Agitar el envase antes de usar. Aplicar 3-4 gotas sobre el rostro, de día y de noche, antes de la crema facial, masajeando con las yemas de los dedos hasta su absorción.",
+        piel:"Todo tipo de piel, recomendado desde los 30 años." } },
+
+    { id:'serum-antiedad-triple-accion', marca:"Ésika", categoria:'damas', nombre:"Triple Acción Max · Sérum Antiedad 10X Colágeno Vegano",
+      descripcion:"Sérum facial concentrado antiedad.", precio:"$8,50",
+      foto:"fotos/serum-antiedad-esika.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"10X más colágeno vegano",
+        beneficios:"Reduce hasta las arrugas más profundas, reafirma la piel e hidrata intensamente; 100% mostró hidratación inmediata desde el primer uso.",
+        modoUso:"Aplicar un par de gotas sobre el rostro limpio y masajear de forma ascendente hasta su total absorción.",
+        piel:"Todo tipo de piel." } },
+
+    { id:'homme-expert-shampoo', marca:"L'bel", categoria:'caballeros', nombre:"Homme Expert · Shampoo 3X",
+      descripcion:"Shampoo masculino con tripéptidos.", precio:"$8,50",
+      foto:"fotos/homme-expert-shampoo-lbel.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'general', familia:'Cuidado capilar masculino',
+        texto:"Shampoo 3X de la línea Homme Expert, formulado con tripéptidos. Según su empaque, ofrece limpieza, control de caspa y control anti-caída en un solo producto. Aplicar sobre cabello húmedo, masajear el cuero cabelludo y enjuagar con abundante agua." } },
+
+    { id:'spumatak-shampoo-ninos', marca:"Ésika", categoria:'ninos', nombre:"Comando Force · Shampoo 2 en 1 Spumatak",
+      descripcion:"Shampoo y acondicionador 2 en 1 para niños, sin lágrimas.", precio:"$8,50",
+      foto:"fotos/spumatak-shampoo-ninos-esika.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Fórmula de máxima espuma, sin lágrimas",
+        beneficios:"Limpia, desenreda y suaviza el cabello de los niños dejándolo manejable, sin generar ardor en los ojos.",
+        modoUso:"Aplicar sobre el cabello húmedo, masajear formando espuma y enjuagar con abundante agua.",
+        piel:"Cabello infantil, todo tipo." } },
+
+    { id:'nocturne-serum', marca:"L'bel", categoria:'damas', nombre:"Nocturne · Sérum Antiedad Concentrado",
+      descripcion:"Sérum renovador nocturno para el rostro.", precio:"$13,50",
+      foto:"fotos/nocturne-serum-renovador-lbel.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"12% complejo con ácido hialurónico + péptidos",
+        beneficios:"Concentrado antiedad de renovación nocturna que reduce líneas de expresión y suaviza las señales del cansancio desde la primera aplicación; textura ligera de rápida absorción y acabado sedoso.",
+        modoUso:"Aplicar sobre el rostro limpio en frente, mentón y mejillas, masajeando con movimientos circulares hacia el exterior. Usar de noche, antes de dormir.",
+        piel:"Todo tipo de piel." } },
+
+    { id:'skin-first-set-hello-age-prevent', marca:"Cyzone", categoria:'damas', nombre:"Skin First · Set Limpiadora + Hidratante Hello Age Prevent",
+      descripcion:"Dúo de limpieza e hidratación facial.", precio:"$22,00",
+      foto:"fotos/skin-first-hello-age-prevent-cyzone.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Limpiadora: activos de algas marinas · Hidratante: ácido hialurónico y vitamina C",
+        beneficios:"La limpiadora ofrece limpieza inmediata respetando el pH natural de la piel y eliminando residuos de contaminación; la crema hidrata hasta 24 horas sin sensación grasosa y da luminosidad al rostro.",
+        modoUso:"Paso 1: aplicar la limpiadora en gel sobre el rostro húmedo, masajear y enjuagar. Paso 2: aplicar la crema hidratante sobre el rostro limpio, de día o de noche.",
+        piel:"Todo tipo de piel." } },
+
+    { id:'suero-anti-imperfecciones-triple-accion', marca:"Ésika", categoria:'damas', nombre:"Triple Acción Max · Suero Anti-Imperfecciones",
+      descripcion:"Suero facial anti-brillo, reductor de poros e imperfecciones.", precio:"$12,50",
+      foto:"fotos/suero-anti-imperfecciones-triple-accion-max-esika.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"5% complejo anti-brillo",
+        beneficios:"Reduce el tamaño de los poros, controla el brillo y la oleosidad, y reduce la apariencia de imperfecciones en 2 semanas; 93% comprobó reducción de poros desde el primer uso.",
+        modoUso:"Aplicar 2-3 gotas sobre las yemas de los dedos y distribuir sobre la piel limpia y seca, con suaves masajes ascendentes.",
+        piel:"Piel mixta a grasa, con tendencia a brillo e imperfecciones." } },
+
+    { id:'talco-multicare-pies', marca:"Ésika", categoria:'damas', nombre:"Multicare · Talco para Pies",
+      descripcion:"Talco antitranspirante y desodorante para pies.", precio:"$7,50",
+      foto:"fotos/talco-multicare-pies-esika.jpg", tipoProducto:'skincare',
+      notas:{ tipo:'detallada',
+        activos:"Undecilenato de zinc y menthol",
+        beneficios:"24 horas de protección antitranspirante y frescura prolongada; su tecnología antibacterial combate las bacterias causantes del mal olor.",
+        modoUso:"Aplicar directamente sobre los pies, especialmente entre los dedos, y esparcir.",
+        piel:"Todo tipo de piel; apto para toda la familia." } },
+  ];
+
+  // ---------- Renderizar el catálogo ----------
+  const grid = document.getElementById('grid');
+
+  function renderCatalogo(){
+    grid.innerHTML = PRODUCTOS.map(p => `
+      <div class="card" data-category="${p.categoria}">
+        <div class="card-img" data-id="${p.id}" data-img="${p.foto}">
+          <span class="placeholder-label">FOTO DEL<br>PRODUCTO</span>
+        </div>
+        <div class="card-body">
+          <span class="cat">${p.categoria === 'damas' ? 'Damas' : p.categoria === 'caballeros' ? 'Caballeros' : 'Niños'}</span>
+          <h3>${p.nombre}</h3>
+          <p>${p.descripcion}</p>
+          <span class="price">${p.precio}</span>
+        </div>
+      </div>
+    `).join('');
+  }
+  renderCatalogo();
+
+  // ---------- Buscador + filtro por categoría (combinados) ----------
+  const tabs = document.querySelectorAll('.tab');
+  const buscador = document.getElementById('buscador');
+  const limpiarBusqueda = document.getElementById('limpiarBusqueda');
+  const sinResultados = document.getElementById('sinResultados');
+  let filtroActual = 'todos';
+
+  // quita tildes para que "jazmin" encuentre "Jazmín", etc.
+  function normalizar(txt){
+    return txt.toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+
+  function aplicarFiltros(){
+    const termino = normalizar(buscador.value.trim());
+    let visibles = 0;
+
+    document.querySelectorAll('#grid .card').forEach(card => {
+      const id = card.querySelector('.card-img').dataset.id;
+      const producto = PRODUCTOS.find(p => p.id === id);
+      const coincideCategoria = filtroActual === 'todos' || card.dataset.category === filtroActual;
+
+      let coincideBusqueda = true;
+      if (termino){
+        const n = producto.notas || {};
+        const textoProducto = normalizar([
+          producto.nombre,
+          producto.marca,
+          producto.descripcion,
+          n.familia || '',
+          n.texto || '',
+          n.salida || '',
+          n.corazon || '',
+          n.fondo || ''
+        ].join(' '));
+        coincideBusqueda = textoProducto.includes(termino);
+      }
+
+      const mostrar = coincideCategoria && coincideBusqueda;
+      card.classList.toggle('hide', !mostrar);
+      if (mostrar) visibles++;
+    });
+
+    sinResultados.hidden = visibles !== 0;
+    limpiarBusqueda.hidden = termino === '';
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      filtroActual = tab.dataset.filter;
+      aplicarFiltros();
+    });
+  });
+
+  buscador.addEventListener('input', aplicarFiltros);
+  limpiarBusqueda.addEventListener('click', () => {
+    buscador.value = '';
+    aplicarFiltros();
+    buscador.focus();
+  });
+
+  // ---------- Formulario de contacto: envía a tu correo vía Netlify Forms ----------
+  const contactForm = document.getElementById('contactForm');
+  const formNote = document.getElementById('formNote');
+  const NUMERO_WHATSAPP = '593988318915'; // mismo número del botón flotante
+
+  function codificarFormulario(data){
+    return Object.keys(data)
+      .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+      .join('&');
+  }
+
+  contactForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    const datos = {
+      'form-name': 'contacto',
+      nombre: contactForm.nombre.value,
+      telefono: contactForm.telefono.value,
+      mensaje: contactForm.mensaje.value
+    };
+
+    formNote.textContent = 'Enviando...';
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: codificarFormulario(datos)
+    })
+      .then(() => {
+        const t = document.getElementById('toast');
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 2500);
+        formNote.textContent = '¡Mensaje enviado! Te contactaremos pronto.';
+        contactForm.reset();
+      })
+      .catch(() => {
+        formNote.textContent = 'No se pudo enviar. Prueba con el botón de WhatsApp.';
+      });
+  });
+
+  // Botón: arma un mensaje de WhatsApp con lo que la persona ya escribió en el formulario
+  document.getElementById('btnWhatsappForm').addEventListener('click', function(){
+    const nombre = contactForm.nombre.value.trim();
+    const telefono = contactForm.telefono.value.trim();
+    const mensaje = contactForm.mensaje.value.trim();
+
+    let texto = 'Hola, quisiera más información.';
+    if (nombre || telefono || mensaje) {
+      texto = `Hola, soy ${nombre || '(sin nombre)'}.`;
+      if (mensaje) texto += ` ${mensaje}.`;
+      if (telefono) texto += ` Mi teléfono: ${telefono}.`;
+    }
+
+    const url = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(texto)}`;
+    window.open(url, '_blank');
+  });
+
+  // ---------- Si ya existe la foto real, mostrarla en la miniatura ----------
+  document.querySelectorAll('.card-img[data-img]').forEach(el => {
+    const ruta = el.dataset.img;
+    const test = new Image();
+    test.onload = () => {
+      el.style.backgroundImage = `url('${ruta}')`;
+      el.classList.add('has-photo');
+    };
+    test.src = ruta;
+  });
+
+  // ---------- Rotador de fondo del hero (una foto por marca) ----------
+  const bgSlides = document.querySelectorAll('.bg-slide');
+  const brandBadges = document.querySelectorAll('.brand-badge');
+  let heroActual = 0;
+  let heroTimer;
+
+  function irASlide(i){
+    bgSlides[heroActual].classList.remove('active');
+    brandBadges[heroActual].classList.remove('active');
+    heroActual = i;
+    bgSlides[heroActual].classList.add('active');
+    brandBadges[heroActual].classList.add('active');
+  }
+
+  function iniciarAutoRotacion(){
+    heroTimer = setInterval(() => {
+      irASlide((heroActual + 1) % bgSlides.length);
+    }, 5000);
+  }
+
+  brandBadges.forEach((badge, i) => {
+    badge.addEventListener('click', () => {
+      clearInterval(heroTimer);
+      irASlide(i);
+      iniciarAutoRotacion();
+    });
+  });
+
+  iniciarAutoRotacion();
+
+  // ---------- Lightbox: Foto + Notas Olfativas ----------
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxEmpty = document.getElementById('lightboxEmpty');
+  const lightboxClose = document.getElementById('lightboxClose');
+  const lightboxBrand = document.getElementById('lightboxBrand');
+  const lightboxNombre = document.getElementById('lightboxNombre');
+  const lightboxNotas = document.getElementById('lightboxNotas');
+  const lightboxTabs = document.querySelectorAll('.lightbox-tab');
+  const lightboxTabNotas = document.getElementById('lightboxTabNotas');
+  const lightboxPanes = document.querySelectorAll('.lightbox-pane');
+
+  function renderNotas(producto){
+    const n = producto.notas;
+    const esSkincare = producto.tipoProducto === 'skincare';
+
+    if (esSkincare && n.tipo === 'detallada'){
+      lightboxNotas.innerHTML = `
+        <div class="nota-fila"><b>Activos clave</b><span>${n.activos}</span></div>
+        <div class="nota-fila"><b>Beneficios</b><span>${n.beneficios}</span></div>
+        <div class="nota-fila"><b>Modo de uso</b><span>${n.modoUso}</span></div>
+        <div class="nota-fila"><b>Piel recomendada</b><span>${n.piel}</span></div>
+        <span class="nota-fuente">Fuente: ficha oficial del fabricante.</span>
+      `;
+    } else if (n.tipo === 'detallada'){
+      lightboxNotas.innerHTML = `
+        <span class="nota-familia">${n.familia}</span>
+        <div class="nota-fila"><b>Salida</b><span>${n.salida}</span></div>
+        <div class="nota-fila"><b>Corazón</b><span>${n.corazon}</span></div>
+        <div class="nota-fila"><b>Fondo</b><span>${n.fondo}</span></div>
+        <span class="nota-fuente">Fuente: ficha oficial del fabricante.</span>
+        <button type="button" class="nota-info-toggle">¿Qué significa esto? <span>ⓘ</span></button>
+        <div class="nota-info-explicacion" hidden>
+          <p><b>Salida</b> — lo primero que se percibe al aplicar el perfume. Dura pocos minutos (cítricos, notas verdes, especias frescas).</p>
+          <p><b>Corazón</b> — el aroma principal, aparece cuando la salida se desvanece. Es lo que más tiempo se percibe (florales, especias, frutas).</p>
+          <p><b>Fondo</b> — las notas más duraderas. Aparecen al final y pueden sentirse horas después, incluso en la ropa (maderas, almizcle, vainilla, ámbar).</p>
+        </div>
+      `;
+      const toggle = lightboxNotas.querySelector('.nota-info-toggle');
+      const explicacion = lightboxNotas.querySelector('.nota-info-explicacion');
+      toggle.addEventListener('click', () => { explicacion.hidden = !explicacion.hidden; });
+    } else if (n.tipo === 'general'){
+      lightboxNotas.innerHTML = `
+        <span class="nota-familia">${n.familia}</span>
+        <p class="nota-texto">${n.texto}</p>
+        <span class="nota-fuente">Fuente: descripción publicada por la marca.</span>
+      `;
+    } else {
+      const cual = esSkincare ? 'las características' : 'las notas olfativas';
+      lightboxNotas.innerHTML = `<p class="nota-texto">Todavía no se han agregado ${cual} de este producto.</p>`;
+    }
+  }
+
+  function cambiarTab(nombreTab){
+    lightboxTabs.forEach(t => t.classList.toggle('active', t.dataset.tab === nombreTab));
+    lightboxPanes.forEach(p => p.classList.toggle('active', p.dataset.pane === nombreTab));
+  }
+
+  lightboxTabs.forEach(tab => {
+    tab.addEventListener('click', () => cambiarTab(tab.dataset.tab));
+  });
+
+  document.querySelectorAll('.card-img').forEach(el => {
+    el.setAttribute('tabindex', '0');
+    el.setAttribute('role', 'button');
+    el.setAttribute('aria-label', 'Ver foto y notas olfativas del producto');
+
+    el.addEventListener('click', () => abrirLightbox(el.dataset.id));
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        abrirLightbox(el.dataset.id);
+      }
+    });
+  });
+
+  function abrirLightbox(id){
+    const producto = PRODUCTOS.find(p => p.id === id);
+    if (!producto) return;
+
+    lightboxBrand.textContent = producto.marca;
+    lightboxNombre.textContent = producto.nombre;
+    lightboxTabNotas.textContent = producto.tipoProducto === 'skincare' ? 'Características' : 'Notas Olfativas';
+    renderNotas(producto);
+    cambiarTab('foto');
+
+    lightboxImg.style.display = 'none';
+    lightboxEmpty.style.display = 'none';
+    lightbox.classList.add('show');
+
+    const ruta = producto.foto;
+    const test = new Image();
+    test.onload = () => {
+      lightboxImg.src = ruta;
+      lightboxImg.style.display = 'block';
+    };
+    test.onerror = () => {
+      lightboxEmpty.textContent = 'Aún no has agregado esta foto. Colócala en la carpeta "fotos" con el nombre: ' + ruta.split('/').pop();
+      lightboxEmpty.style.display = 'block';
+    };
+    test.src = ruta;
+  }
+
+  function cerrarLightbox(){
+    lightbox.classList.remove('show');
+  }
+
+  lightboxClose.addEventListener('click', cerrarLightbox);
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) cerrarLightbox();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') cerrarLightbox();
+  });
+
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').catch(()=>{});
+    });
+  }
+
+  // ---------- Contador de visitas visible ----------
+  (async function contadorVisitas(){
+    const badge = document.getElementById('contadorVisitas');
+    if (!badge) return;
+    const yaConto = sessionStorage.getItem('visitaContada');
+    try {
+      const resp = await fetch(`/api/contador${yaConto ? '?leer=1' : ''}`);
+      if (!resp.ok) throw new Error('sin respuesta');
+      const data = await resp.json();
+      badge.textContent = `👁 ${Number(data.visitas).toLocaleString('es-EC')} visitas`;
+      if (!yaConto) sessionStorage.setItem('visitaContada', '1');
+    } catch(e) {
+      badge.hidden = true; // si la función aún no está desplegada, se oculta sin romper la página
+    }
+  })();
+</script>
+
+</body>
+</html>
