@@ -27,7 +27,7 @@ solo reemplaza `--fuchsia` por ese valor.
   Cambia el `data-category` a `damas`, `caballeros` o `ninos` según corresponda — las pestañas
   de filtro ya funcionan automáticamente con eso.
 - **Fotos:** reemplaza los recuadros "FOTO DEL PRODUCTO" agregando `<img src="foto.jpg">` dentro de `.card-img`.
-- **WhatsApp:** el número ya está puesto (+593 98 831 8915), aparece 2 veces en el archivo.
+- **WhatsApp:** el número ya está puesto (+593 96 793 7808), aparece 2 veces en el archivo.
 - **Nombre/tagline:** busca "Eclat" y "Perfumería" para ajustar textos.
 
 ## Publicar (igual que antes)
